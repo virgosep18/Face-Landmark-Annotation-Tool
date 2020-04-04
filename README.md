@@ -15,6 +15,7 @@ python key_point_5pts.py ./image/
 
 Sample output annotated file format:
 1.jpg 139 264 195 325 160 288 179 288 169 296 161 303 177 302
+
 [image_file, TL, BR, LE, RE, NO, LM, RM]
 
 ## References
@@ -22,3 +23,6 @@ Sample output annotated file format:
 
 
 ## To DO
+1. modify tool to add 35 points ladnamrks
+
+2. modify it to annotate multiple faces in same image
