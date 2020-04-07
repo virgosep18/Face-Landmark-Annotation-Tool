@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Dec 28 2015
+Created on Apr 04 2020
 
-@author: Chenhao Zhang
+@author: Yogesh Kumar
 
-Example:  python eye.py orl_faces/s1/
+Example:  python key_point_35pts.py ./image/
 """
 import sys, os
 from PIL import Image, ImageTk
@@ -17,7 +17,7 @@ except IndexError:
     print ("Usage: python key_point.py <path-to-imgs>")
     sys.exit(1)
 
-#path = '_30_Jul16_horse_face'
+
 files = os.listdir(path)
 #try:
 #    files = os.listdir(path)
@@ -25,15 +25,13 @@ files = os.listdir(path)
 #    print ("Unable to access the directory!")
 files = [f for f in files if f[0]!='.' and not f.endswith('csv') and not f.endswith('txt')]
 
-#N_points = 7
-N_points = 8
-#N_points = 37
+#N_points = 8
+N_points = 29
 
 point_now = 0
 point_pos = [None for i in range(N_points)]
 Buttons = []
-#cnt = 0
-#eye = [0,0]
+
 
 path_parts = [split_part for split_part in os.path.split(path) if split_part != '']
 image_folder_name = path_parts[-1]
@@ -45,10 +43,10 @@ if not os.path.exists(canvas_path):
 if not os.path.exists(annotationPath):
     os.makedirs(annotationPath)    
 
-#annotationInfo = ['TL ', 'BR ', 'LE ', 'RE ', 'NO ', 'LM ', 'RM ']
-annotationInfo = ['TL ', 'BR ', 'LE ', 'RE ', 'NO ', 'LM ', 'RM ', 'CC ']
-#annotationInfo = ['TL ', 'BR ', 'LE_L ', 'LE_R ', 'RE-R ', 'RE_L ', 'NO_T ', 'NO_B ', 'NO_L ', 'NO_R ', 'MO_L ', 'MO_R ', 'MO_UC ', 'MO_LC ', 'LEB_L ', 'LEB_C ', 'LEB_R ', 'REB_R ', 'LEB_C ', 'LEB_L ',
-#                   'FO_1 ', 'FO_2 ', 'FO_3 ', 'FO_4 ', 'FO_5 ', 'FO_5 ', 'FO_7 ', 'FO_8 ', 'FO_9 ', 'FO_10 ', 'FO_11 ', 'FO_12 ', 'FO_13 ', 'FO_14 ', 'FO_15 ', 'FO_16 ',]
+#annotationInfo = ['TL ', 'BR ', 'LE ', 'RE ', 'NO ', 'LM ', 'RM ', 'CC ']
+annotationInfo = ['TL ', 'BR ', 'LE_L ', 'LE_R ', 'RE-R ', 'RE_L ', 'NO_T ', 'NO_B ', 'NO_L ', 'NO_R ', 
+                  'MO_L ', 'MO_R ', 'MO_UC ', 'MO_LC ', 'LEB_L ', 'LEB_C ', 'LEB_R ', 'REB_R ', 'LEB_C ', 'LEB_L ', 
+                  'FO_1 ', 'FO_2 ', 'FO_3 ', 'FO_4 ', 'CC ', 'FO_5 ', 'FO_6 ', 'FO_7 ', 'FO_8 ']
 
 for a_file in files:
     out_name = a_file.split('.')[0]
@@ -137,7 +135,8 @@ for a_file in files:
         global point_now
         point_now = 0
 #        reDraw(point_now)
-    btn1 = tk.Button(toolbox, text="Head top left(1)", command=btn1_c)
+    btn1 = tk.Button(toolbox, text="Head top left(1)", width = 19, command=btn1_c)
+    #btn1.pack(side=tk.LEFT)
     Buttons.append(btn1)
 
     
@@ -145,14 +144,16 @@ for a_file in files:
         global point_now
         point_now = 1
 #        reDraw(point_now)
-    btn2 = tk.Button(toolbox, text="Head bottom right(2)", command=btn2_c)
+    btn2 = tk.Button(toolbox, text="Head bottom right(2)", width = 19, command=btn2_c)
+    #btn2.pack(side=tk.RIGHT)
     Buttons.append(btn2)
     
     def btn3_c():
         global point_now
         point_now = 2   
 #        reDraw(point_now)
-    btn3 = tk.Button(toolbox, text="left_eye(3)", command=btn3_c)
+    btn3 = tk.Button(toolbox, text="left_eye_left(3)", width = 19, command=btn3_c)
+    #btn3.pack(side=tk.LEFT)
     Buttons.append(btn3)
 
     
@@ -160,14 +161,15 @@ for a_file in files:
         global point_now
         point_now = 3  
 #        reDraw(point_now)
-    btn4 = tk.Button(toolbox, text="right_eye(4)", command=btn4_c)
+    btn4 = tk.Button(toolbox, text="left_eye_right(4)", width = 19, command=btn4_c)
+    #btn4.pack(side=tk.RIGHT)
     Buttons.append(btn4)
     
     def btn5_c():
         global point_now
         point_now = 4 
 #        reDraw(point_now)
-    btn5 = tk.Button(toolbox, text="nose(5)", command=btn5_c)
+    btn5 = tk.Button(toolbox, text="right_eye_right(5)", width = 19, command=btn5_c)
     Buttons.append(btn5)
     
     
@@ -175,31 +177,178 @@ for a_file in files:
         global point_now
         point_now = 5 
 #        reDraw(point_now)
-    btn6 = tk.Button(toolbox, text="left mouth(6)", command=btn6_c)
+    btn6 = tk.Button(toolbox, text="right_eye_left(6)", width = 19, command=btn6_c)
     Buttons.append(btn6)
     
     def btn7_c():
         global point_now
         point_now = 6 
 #        reDraw(point_now)
-    btn7 = tk.Button(toolbox, text="right mouth(7)", command=btn7_c)
+    btn7 = tk.Button(toolbox, text="nose_tip(7)", width = 19, command=btn7_c)
     Buttons.append(btn7)
  
     def btn8_c():
         global point_now
         point_now = 7 
 #        reDraw(point_now)
-    btn8 = tk.Button(toolbox, text="center chin(8)", command=btn8_c)
+    btn8 = tk.Button(toolbox, text="nose_bottom(8)", width = 19, command=btn8_c)
     Buttons.append(btn8) 
+ 
+    def btn9_c():
+        global point_now
+        point_now = 8 
+#        reDraw(point_now)
+    btn9 = tk.Button(toolbox, text="nose_left(9)", width = 19, command=btn9_c)
+    Buttons.append(btn9) 
+
+    def btn10_c():
+        global point_now
+        point_now = 9 
+#        reDraw(point_now)
+    btn10 = tk.Button(toolbox, text="nose_right(10)", width = 19, command=btn10_c)
+    Buttons.append(btn10) 
     
+    def btn11_c():
+        global point_now
+        point_now = 10 
+#        reDraw(point_now)
+    btn11 = tk.Button(toolbox, text="mouth_left(11)", width = 19, command=btn11_c)
+    Buttons.append(btn11)     
+
+    def btn12_c():
+        global point_now
+        point_now = 11
+#        reDraw(point_now)
+    btn12 = tk.Button(toolbox, text="mouth_right(12)", width = 19, command=btn12_c)
+    Buttons.append(btn12)   
+
+    def btn13_c():
+        global point_now
+        point_now = 12
+#        reDraw(point_now)
+    btn13 = tk.Button(toolbox, text="mouth_upper_center(13)", width = 19, command=btn13_c)
+    Buttons.append(btn13)   
+
+    def btn14_c():
+        global point_now
+        point_now = 13
+#        reDraw(point_now)
+    btn14 = tk.Button(toolbox, text="mouth_lower_center(14)", width = 19, command=btn14_c)
+    Buttons.append(btn14) 
+
+    def btn15_c():
+        global point_now
+        point_now = 14
+#        reDraw(point_now)
+    btn15 = tk.Button(toolbox, text="left_eyebrow_left(15)", width = 19, command=btn15_c)
+    Buttons.append(btn15)
+
+    def btn16_c():
+        global point_now
+        point_now = 15
+#        reDraw(point_now)
+    btn16 = tk.Button(toolbox, text="left_eyebrow_center(16)", width = 19, command=btn16_c)
+    Buttons.append(btn16)
+
+    def btn17_c():
+        global point_now
+        point_now = 16
+#        reDraw(point_now)
+    btn17 = tk.Button(toolbox, text="left_eyebrow_right(17)", width = 19, command=btn17_c)
+    Buttons.append(btn17)
+
+    def btn18_c():
+        global point_now
+        point_now = 17
+#        reDraw(point_now)
+    btn18 = tk.Button(toolbox, text="right_eyebrow_right(18)", width = 19, command=btn18_c)
+    Buttons.append(btn18)
+
+    def btn19_c():
+        global point_now
+        point_now = 18
+#        reDraw(point_now)
+    btn19 = tk.Button(toolbox, text="right_eyebrow_center(19)", width = 19, command=btn19_c)
+    Buttons.append(btn19)
+
+    def btn20_c():
+        global point_now
+        point_now = 19
+#        reDraw(point_now)
+    btn20 = tk.Button(toolbox, text="right_eyebrow_left(20)", width = 19, command=btn20_c)
+    Buttons.append(btn20)
+
+    def btn21_c():
+        global point_now
+        point_now = 20
+#        reDraw(point_now)
+    btn21 = tk.Button(toolbox, text="face_outline_1(21)", width = 19, command=btn21_c)
+    Buttons.append(btn21)
+
+    def btn22_c():
+        global point_now
+        point_now = 21
+#        reDraw(point_now)
+    btn22 = tk.Button(toolbox, text="face_outline_2(22)", width = 19, command=btn22_c)
+    Buttons.append(btn22)
+
+    def btn23_c():
+        global point_now
+        point_now = 22
+#        reDraw(point_now)
+    btn23 = tk.Button(toolbox, text="face_outline_3(23)", width = 19, command=btn23_c)
+    Buttons.append(btn23)
+
+    def btn24_c():
+        global point_now
+        point_now = 23
+#        reDraw(point_now)
+    btn24 = tk.Button(toolbox, text="face_outline_4(24)", width = 19, command=btn24_c)
+    Buttons.append(btn24)
+
+    def btn25_c():
+        global point_now
+        point_now = 24
+#        reDraw(point_now)
+    btn25 = tk.Button(toolbox, text="chin_center(25)", width = 19, command=btn25_c)
+    Buttons.append(btn25)
+
+    def btn26_c():
+        global point_now
+        point_now = 25
+#        reDraw(point_now)
+    btn26 = tk.Button(toolbox, text="face_outline_5(26)", width = 19, command=btn26_c)
+    Buttons.append(btn26)
+
+    def btn27_c():
+        global point_now
+        point_now = 26
+#        reDraw(point_now)
+    btn27 = tk.Button(toolbox, text="face_outline_6(27)", width = 19, command=btn27_c)
+    Buttons.append(btn27)
+
+    def btn28_c():
+        global point_now
+        point_now = 27
+#        reDraw(point_now)
+    btn28 = tk.Button(toolbox, text="face_outline_7(28)", width = 19, command=btn28_c)
+    Buttons.append(btn28)
+
+    def btn29_c():
+        global point_now
+        point_now = 28
+#        reDraw(point_now)
+    btn29 = tk.Button(toolbox, text="face_outline_8(29)", width = 19, command=btn29_c)
+    Buttons.append(btn29)
+
     def btn0_c():
         global point_pos
         point_pos[point_now] = None
         clearPoint(point_now)
-    btn0 = tk.Button(toolbox, text="Clear this point(c)", command=btn0_c)
+    btn0 = tk.Button(toolbox, text="Clear this point(c)", width = 19, command=btn0_c)
     Buttons.append(btn0)
  
-    def btn9_c():
+    def btn30_c():
         global point_pos
         print ('Write Points')
         #canvas.postscript(file=os.path.join(canvas_path, out_name+".ps"), colormode='color')   
@@ -212,10 +361,10 @@ for a_file in files:
                 fout1.write(" "+"-1 -1"+"\n")
         fout1.write("\n")
          #top.destroy()
-    btn9 = tk.Button(toolbox, text="Write Points(w)", command=btn9_c)
-    Buttons.append(btn9)    
+    btn30 = tk.Button(toolbox, text="Write Points(w)", width = 19, command=btn30_c)
+    Buttons.append(btn30)    
 
-    def btn10_c():
+    def btn31_c():
         global point_pos
         print ('Clear All Points')
         for i in range(N_points):
@@ -223,8 +372,8 @@ for a_file in files:
             clearPoint(i)
             
          #top.destroy()
-    btn10 = tk.Button(toolbox, text="Clear All Points(CA)", command=btn10_c)
-    Buttons.append(btn10)    
+    btn31 = tk.Button(toolbox, text="Clear All Points(CA)", width = 19, command=btn31_c)
+    Buttons.append(btn31)    
  
     def btnx_c():
 #        global point_pos
