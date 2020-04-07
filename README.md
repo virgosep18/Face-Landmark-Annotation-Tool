@@ -13,6 +13,10 @@ python key_point_5pts.py ./image/
 
 ## GUI
 
+tool gui will look like this:
+![alt text](https://github.com/virgosep18/Face-Landmark-Annotation-Tool/blob/master/GUI.JPG)
+
+
 Sample output annotated file format:
 1.jpg 139 264 195 325 160 288 179 288 169 296 161 303 177 302
 
