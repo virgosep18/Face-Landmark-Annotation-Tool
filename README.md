@@ -27,6 +27,6 @@ Sample output annotated file format:
 
 
 ## To DO
-1. modify tool to add 35 points ladnamrks
+1. modify tool to add 35 points ladnamrks  - Done to annotate 27 keypoints
 
-2. modify it to annotate multiple faces in same image
+2. modify it to annotate multiple faces in same image - Done
