@@ -1,5 +1,5 @@
-Facial Landmarks Detection
-==================
+## Facial Landmarks Detection
+==============================
 Steps to find 68 points facial landmarks using OpenCV :
 
 1. First read image frame from disk
@@ -15,7 +15,10 @@ Here I have tried below face detectors for finding landmarks:
 
 
 
-To find facial landmarks with different methods
+# To find facial landmarks with different methods
+
+ 1. First, change input image dir , output image dir and output landmarks file path in detect_keypoints.py
+ 2. Run one of below commands to get facial landmarks:
 
     $ python detect_keypoints.py -l hog
     $ python detect_keypoints.py -l cnn
