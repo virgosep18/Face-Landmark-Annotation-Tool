@@ -183,14 +183,16 @@ if __name__ == "__main__":
     # landmark predictor
     predictor = dlib.shape_predictor(args.weights)
     
+    #Path to input image directory
     IMAGE_DIR='../../Face_data_own/all_images/'
-    #IMAGE_DIR='../../Face_data_own/test_img/'    
+
+    #Path to out image (with face bbox and 68 point landmarks) directoory
     OUT_IMG_DIR='../../Face_data_own/out_images/'
-    #OUT_IMG_DIR='../../Face_data_own/test_out/'    
+   
     fname = None
-    # output file
-    outfile = open("../../Face_data_own/all_images_facial_keypoints.txt", "w+")
-    #outfile = open("../../Face_data_own/test_keypoints.txt", "w+")
+    # output file(has bbox co-ordinate and 68 point landlarmsk co-ordinates for each image face in each image file)
+    outfile = open("./all_images_facial_keypoints.txt", "w+")
+
 
     # if image is valid or not
     image = None
